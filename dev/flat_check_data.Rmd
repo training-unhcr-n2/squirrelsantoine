@@ -1,0 +1,72 @@
+---
+title: "flat_check_data.Rmd empty"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r development, include=FALSE}
+library(testthat)
+```
+
+```{r development-load}
+# Load already included functions if relevant
+pkgload::load_all(export_all = FALSE)
+```
+
+# check_primary_color_is_ok
+    
+```{r function-check_primary_color_is_ok}
+#' Checks if the primary color is ok
+#' 
+#' Checks if the primary color matches the required colors.
+#' 
+#' @param string A character vector. The colors of the squirrels.
+#'
+#' @return A boolean. TRUE if the colors are ok FALSE if they are not.
+#' 
+#' @export
+#' 
+#' @examples
+check_primary_color_is_ok <- function(string) {
+  all_colors_OK <- all(
+    string %in% c("Gray", "Cinnamon", "Black", NA)
+  )
+  
+  if (!all_colors_OK) {
+    stop("Some colors do not match the required colors.")
+  }
+  
+  return(all_colors_OK)
+}
+```
+  
+```{r example-check_primary_color_is_ok}
+check_primary_color_is_ok(string = c("Gray", "Cinnamon", "Black", NA))
+# check_primary_color_is_ok(string = c("Gray", "Pink", "Black", NA))
+```
+  
+```{r tests-check_primary_color_is_ok}
+test_that("check_primary_color_is_ok works", {
+  expect_error(
+    object = check_primary_color_is_ok(string = c("Gray", "Pink", "Black", NA)),
+    regexp = "Some colors do not match the required colors."
+  )
+  expect_true(
+     check_primary_color_is_ok(string = c("Gray", "Cinnamon", "Black", NA))
+  )
+})
+```
+  
+
+
+```{r development-inflate, eval=FALSE}
+# Run but keep eval=FALSE to avoid infinite loop
+# Execute in the console directly
+fusen::inflate(
+  flat_file = "dev/flat_check_data.Rmd", 
+  vignette_name = "Check data",
+  overwrite = TRUE
+  )
+```
+

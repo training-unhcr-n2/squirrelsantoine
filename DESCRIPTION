@@ -1,0 +1,20 @@
+Package: squirrelsantoine
+Title: Build Cool Package About Squirrels
+Version: 0.1.0
+Authors@R: c(
+    person("Antoine", "Languillaume", , "antoine@thinkr.fr", role = c("aut", "cre")),
+    person("ThinkR", role = "cph")
+  )
+Description: A description sentence. Stuff about squirrels (ardillas).
+License: MIT + file LICENSE
+Imports: 
+    glue
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
